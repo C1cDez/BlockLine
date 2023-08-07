@@ -164,7 +164,15 @@ public final class BlockDefinitionHolder {
                     map.put(block, getter.getName().substring(3));
                 }
             }
-            return map.entrySet().stream().map(entry -> entry.getKey() + " = " + entry.getValue())
+            int maxLocalizedNameLength = map.keySet().stream()
+                    .mapToInt(s -> s.getLocalizedName().length())
+                    .max()
+                    .orElse(0);
+
+            String format = "%-" + (maxLocalizedNameLength + 3) + "s= %s";
+
+            return map.entrySet().stream()
+                    .map(entry -> String.format(format, entry.getKey().getLocalizedName(), entry.getValue()))
                     .collect(Collectors.joining("\n"));
         } catch (Exception e) {
             return e.getMessage();
