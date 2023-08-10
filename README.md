@@ -1,2 +1,2 @@
 # BlockLine
-BlockLine - compilator for Esoteric Programming Labguage based on Blocks
+BlockLine - compiler for Esoteric Programming Language based on Blocks
